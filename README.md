@@ -2,6 +2,8 @@
 
 Un kit de démarrage d'application Todo List React conçu pour apprendre les workflows CI/CD avec GitHub Actions.
 
+> 📝 Consultez la [notice de l'exercice](notice.md) pour plus de détails sur les objectifs et les étapes à suivre.
+
 ## Fonctionnalités
 
 - Ajouter de nouvelles tâches
@@ -58,6 +60,52 @@ src/
   ├── App.css
   └── main.tsx
 ```
+
+## Configuration GitHub Actions
+
+### Environnements
+
+Deux environnements sont configurés :
+
+| Environnement | Variables                                     | Secrets        |
+| ------------- | --------------------------------------------- | -------------- |
+| `develop`     | `DEPLOY_URL: https://dev.todoapp.exemple.com` | `DEPLOY_TOKEN` |
+| `production`  | `DEPLOY_URL: https://todoapp.exemple.com`     | `DEPLOY_TOKEN` |
+
+### Gestion des Branches
+
+- `main` : branche principale
+- `develop` : branche de développement
+- Les branches `feature/*` doivent être créées depuis `develop`
+
+### Protection des Branches
+
+Configuration requise pour `main` et `develop` :
+
+- ✅ Pull requests uniquement (pas de push direct)
+- ✅ Tests obligatoires
+- ✅ Pour `main` : minimum 1 reviewer
+
+## Workflow CI/CD
+
+### Flow de Développement
+
+Lors d'une pull request d'une branche feature vers develop :
+
+1. Exécution des tests
+2. Build (fictif)
+3. Déploiement (fictif) sur l'environnement de développement
+
+En cas de succès :
+
+- Merge automatique de la pull request
+- Création d'une pull request de develop vers main
+
+### Flow de Production
+
+Après review et validation manuelle de la pull request develop → main :
+
+- Déploiement (fictif) sur l'environnement de production
 
 ## Objectifs d'Apprentissage
 
